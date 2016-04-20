@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-from src.core.ingredient import Ingredient
-
 ingredients = list()
 
 recipe_url = "https://www.blueapron.com/recipes/gnocchi-caprese-with-garlic-toasts-butter-lettuce-salad"
