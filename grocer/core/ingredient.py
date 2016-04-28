@@ -1,9 +1,10 @@
 class Ingredient:
     name = ""
-    unit = ""
     amount = 0
 
-    def __init__(self, name, unit, amount):
+    def __init__(self, name, amount):
         self.name = name
-        self.unit = unit
         self.amount = amount
+
+    def __str__(self):
+        return str.format("{0} {1}", "why", "not")
