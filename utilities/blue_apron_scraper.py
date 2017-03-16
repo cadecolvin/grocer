@@ -1,7 +1,16 @@
-import requests
-from bs4 import BeautifulSoup
-from grocer.core import Ingredient
+import sys
 
+from bs4 import BeautifulSoup
+
+
+def pull_recipe_page(recipe_url):
+    pass
+
+def parse_ingredients(recipe_html):
+    pass
+
+def parse_instructions(recipe_html):
+    pass
 
 def get_ingredients(recipe_url):
     ingredients = list()
@@ -19,5 +28,7 @@ def get_ingredients(recipe_url):
 
 
 if __name__ == '__main__':
-    url = 'https://www.blueapron.com/recipes/gnocchi-caprese-with-garlic-toasts-butter-lettuce-salad'
-    print(get_ingredients(url))
+    url = sys.args[1]
+    recipe = pull_recipe_page(url)
+    ingredients = parse_ingredients(recipe)
+    instructions = parse_instructions(recipe)
