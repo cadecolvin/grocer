@@ -1,8 +1,0 @@
-__versionstr__ = '0.0.1'
-__author__ = 'Cade Colvin'
-__email__ = 'cade.colvin@gmail.com'
-__projname__ = 'grocer'
-__shortdoc__ = 'A weekly recipe and grocery list maker.'
-__copyright_years__ = '2016'
-__url__ = 'https://github.com/cadecolvin/grocer.git'
-__license__ = 'MIT'
