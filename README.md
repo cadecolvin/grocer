@@ -25,7 +25,7 @@ For example, a simple recipe for a bowl of Cap'n Crunch is below
 ```json
 {
     "URL":"http://www.capncrunch.com/",
-    "Ingredients:[
+    "Ingredients": [
         [".75", "Cup", "Cap'n Crunch"],
         [".75", "Cup", "Milk"]
     ],
