@@ -1,6 +1,7 @@
 import json
 import requests
 import sys
+import unicodedata
 
 from bs4 import BeautifulSoup
 
@@ -21,9 +22,26 @@ def parse_ingredients(recipe_soup):
     ingr_list = ingr_section.findAll('li', attrs={'itemprop':'ingredients'})
 
     for item in ingr_list:
-        amount = item.find('span', {'class':'amount'}).text
-        name = item.text.replace(amount, '').strip()
-        ingredients.append([amount, name])
+        quantity = item.find('span', {'class':'amount'}).text
+        full_name = item.text.replace(quantity, '').strip()
+
+        # The quantifier is always the first word of the full name
+        quantifier = full_name.split(' ')[0]
+
+        # If the full_name is only the quantifier set the name as
+        # the quantifier
+        if(full_name != quantifier):
+            name = full_name.replace(quantifier, '')
+        else:
+            name = quantifier
+
+        try:
+            quantity = unicodedata.numeric(quantity)
+            quantity = '{0:.2f}'.format(quantity)
+        except:
+            pass
+
+        ingredients.append([quantity, quantifier, name])
 
     return ingredients
 
@@ -40,6 +58,7 @@ def parse_instructions(recipe_soup):
             step_text = instr.find('div',
                                     {'class':'instr-txt'}).text.strip()
 
+            step_text = step_text.replace('\n', ' ')
             instructions.append([step_num, step_title, step_text])
 
     return instructions
