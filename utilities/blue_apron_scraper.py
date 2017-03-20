@@ -52,4 +52,5 @@ if __name__ == '__main__':
     instructions = parse_instructions(recipe)
 
     with open(f'{title}.json', 'wt') as f:
-        json.dump([ingredients, instructions], f)
+        json.dump({'Ingredients':ingredients, 
+                   'Instructions':instructions}, f)
