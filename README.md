@@ -7,26 +7,28 @@ You can use Grocer's default recipe library as a template to add your own custom
 
 ## Use ##
 You can add custom recipes by creating a json file in the *recipe-library* folder. The name of the file should be the title of the recipe. The file should be formatted as follows:
-```javascript
+
+```json
 {
     "URL":"URL to the recipe if it exists",
     "Ingredients":[
-        ["Quantity", "Quantifier", "Ingredient"],
-    ]
+        ["Quantity", "Quantifier", "Ingredient"]
+    ],
     "Instructions":[
-        ["Step Number", "Step Title", "Step Text"],
+        ["Step Number", "Step Title", "Step Text"]
     ]
 }
 ```
 
 For example, a simple recipe for a bowl of Cap'n Crunch is below
-```javascript
+
+```json
 {
     "URL":"http://www.capncrunch.com/",
     "Ingredients:[
         [".75", "Cup", "Cap'n Crunch"],
         [".75", "Cup", "Milk"]
-    ]
+    ],
     "Instructions":[
         ["1", "Pour Cereal", "Measure out the Cap'n Crunch and pour it into your cereal bowl."],
         ["2", "Pour Milk", "Measure out the milk and pour it over the cereal."],
