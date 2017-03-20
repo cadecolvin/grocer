@@ -7,7 +7,7 @@ You can use Grocer's default recipe library as a template to add your own custom
 
 ## Use ##
 You can add custom recipes by creating a json file in the *recipe-library* folder. The name of the file should be the title of the recipe. The file should be formatted as follows:
-'''json
+```json
 {
     "URL":"URL to the recipe if it exists",
     "Ingredients":[
@@ -17,10 +17,10 @@ You can add custom recipes by creating a json file in the *recipe-library* folde
         ["Step Number", "Step Title", "Step Text"],
     ]
 }
-'''
+```
 
 For example, a simple recipe for a bowl of Cap'n Crunch is below
-'''json
+```json
 {
     "URL":"http://www.capncrunch.com/",
     "Ingredients:[
@@ -33,6 +33,7 @@ For example, a simple recipe for a bowl of Cap'n Crunch is below
         ["3", "Enjoy!", "Eat the cereal as quickly as possible to ensure that the roof of your mouth is completely destroyed."]
     ]
 }
+```
 
 ## Development ##
 Currently no third party libraries are required for the main project. Within the **Utilities** directory, you will find a Pip **requirements.txt** file as the recipe scrapers require a few 3rd party libraries in order to run.
