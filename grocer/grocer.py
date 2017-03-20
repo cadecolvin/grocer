@@ -2,8 +2,6 @@
 
 import argparse
 
-__version__ = '0.1'
-
 
 def main():
     pass
