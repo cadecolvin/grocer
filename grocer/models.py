@@ -2,6 +2,7 @@ from . import db
 from . import bcrypt
 from sqlalchemy.ext.hybrid import hybrid_property
 
+
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(128), unique=True)
