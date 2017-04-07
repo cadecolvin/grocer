@@ -1,4 +1,5 @@
 from . import db
+from . import bcrypt
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
@@ -21,7 +22,7 @@ class User(db.Model):
         self.email = email
         self.password = password
 
-    def password_is_correct(self, password):
+    def verify_password(self, password):
         return bcrypt.check_password(self._password, password)
 
 
