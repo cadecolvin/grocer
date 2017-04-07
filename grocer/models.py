@@ -1,9 +1,9 @@
 from . import db
-from . import bcrypt
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class User(db.Model):
+    __tablename__ = 'Users'
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(128), unique=True)
     _password = db.Column(db.String(128))
@@ -26,6 +26,7 @@ class User(db.Model):
 
 
 class Recipe(db.Model):
+    __tablename__ = 'Recipes'
     recipe_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     name = db.Column(db.String(64))
@@ -41,6 +42,7 @@ class Recipe(db.Model):
 
 
 class RecipeStep(db.Model):
+    __tablename__ = 'RecipeSteps'
     recipestep_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.recipe_id'))
@@ -55,6 +57,7 @@ class RecipeStep(db.Model):
 
 
 class RecipeIngredient(db.Model):
+    __tablename__ = 'RecipeIngredients'
     recipeingredient_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
     recipe_id = db.Column(db.Integer,
@@ -72,6 +75,7 @@ class RecipeIngredient(db.Model):
 
 
 class Ingredient(db.Model):
+    __tablename__ = 'Ingredients'
     ingredient_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
     name = db.Column(db.String(64))
@@ -83,6 +87,7 @@ class Ingredient(db.Model):
 
 
 class Measurement(db.Model):
+    __tablename__ = 'Measurements'
     measurement_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
     name = db.Column(db.String(64))
