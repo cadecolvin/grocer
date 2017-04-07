@@ -1,12 +1,13 @@
 from . import db
 from . import bcrypt
+from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'Users'
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    email = db.Column(db.String(128), unique=True)
+    email = db.Column(db.String(128), unique=True, index=True)
     _password = db.Column(db.String(128))
     recipes = db.relationship('Recipe', backref='user')
 
