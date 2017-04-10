@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
 class Recipe(db.Model):
     __tablename__ = 'Recipes'
     recipe_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
     name = db.Column(db.String(64))
     description = db.Column(db.String(128))
 
@@ -47,7 +47,7 @@ class RecipeStep(db.Model):
     __tablename__ = 'RecipeSteps'
     recipestep_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.recipe_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipes.recipe_id'))
     ordinal = db.Column(db.Integer)
     name = db.Column(db.String(64))
     step_text = db.Column(db.Text)
@@ -63,11 +63,11 @@ class RecipeIngredient(db.Model):
     recipeingredient_id = db.Column(db.Integer, primary_key=True,
             autoincrement=True)
     recipe_id = db.Column(db.Integer,
-            db.ForeignKey('recipe.recipe_id'))
+            db.ForeignKey('Recipes.recipe_id'))
     ingredient_id = db.Column(db.Integer,
-            db.ForeignKey('ingredient.ingredient_id'))
+            db.ForeignKey('Ingredients.ingredient_id'))
     measurement_id = db.Column(db.Integer,
-            db.ForeignKey('measurement.measurement_id'))
+            db.ForeignKey('Measurements.measurement_id'))
     amount = db.Column(db.Float)
 
     #TODO: Determine how to properly handle this relationship
@@ -98,3 +98,15 @@ class Measurement(db.Model):
     def __init__(self, name, abbreviation):
         self.name = name
         self.abbreviation = abbreviation
+
+
+class Meal(db.Model):
+    __tablename__ = 'Meals'
+    meal_id = db.Column(db.Integer, primary_key=True,
+            autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipes.recipe_id'))
+    meal_dt = db.Column(db.Date)
+
+    user = db.relationship('User', backref='user')
+    recipe = db.relationship('Recipe', backref='meal')
