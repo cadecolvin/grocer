@@ -16,7 +16,7 @@ class User(UserMixin, db.Model):
         return self._password
 
     @password.setter
-    def _set_password(self, plain_text):
+    def _set_password(self, plaintext):
         self._password = bcrypt.generate_password_hash(plaintext)
 
     def __init__(self, email, password):
@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
         self.password = password
 
     def verify_password(self, password):
-        return bcrypt.check_password(self._password, password)
+        return bcrypt.check_password_hash(self._password, password)
 
 
 class Recipe(db.Model):
@@ -73,7 +73,7 @@ class RecipeIngredient(db.Model):
     #TODO: Determine how to properly handle this relationship
     
     ingredient = db.relationship('Ingredient', backref='recipeingredient')
-    measurement = db.relationshipt('Measurement', backref='measurement')
+    measurement = db.relationship('Measurement', backref='measurement')
 
 
 class Ingredient(db.Model):
