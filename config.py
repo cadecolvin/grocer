@@ -20,6 +20,12 @@ class Config:
         pass
 
 
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
+            os.path.join(basedir, 'dev-db.sqlite')
+
+
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
@@ -29,5 +35,5 @@ class TestingConfig(Config):
 
 config = {
     'testing': TestingConfig,
-    'default': TestingConfig
+    'default': DevelopmentConfig
 }

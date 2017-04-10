@@ -110,3 +110,8 @@ class Meal(db.Model):
 
     user = db.relationship('User', backref='user')
     recipe = db.relationship('Recipe', backref='meal')
+
+    def __init__(self, user, recipe, meal_date):
+        self.user_id = user.user_id
+        self.recipe_id = recipe.recipe_id
+        self.meal_dt = meal_date
