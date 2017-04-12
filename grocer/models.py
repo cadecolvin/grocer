@@ -7,9 +7,12 @@ from sqlalchemy.ext.hybrid import hybrid_property
 class User(UserMixin, db.Model):
     __tablename__ = 'Users'
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    role_id = db.Column(db.Integer, db.ForeignKey('UserRoles.role_id'))
     email = db.Column(db.String(128), unique=True, index=True)
     _password = db.Column(db.String(128))
-    recipes = db.relationship('Recipe', backref='user')
+    identity_confirmed = db.Column(db.Boolean, default=False)
+
+    recipes = db.relationship('Recipe', backref='user') 
 
     @hybrid_property
     def password(self):
@@ -25,6 +28,20 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return bcrypt.check_password_hash(self._password, password)
+
+
+class UserRole(db.Model):
+    __tablename__ = 'UserRoles'
+    role_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    name = db.Column(db.String)
+    description = db.Column(db.String)
+    default = db.Column(db.Boolean, default=False)
+
+    users = db.relationship('User', backref='role')
+
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
 
 
 class Recipe(db.Model):
