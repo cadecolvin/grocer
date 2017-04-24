@@ -5,7 +5,7 @@ from ..import db
 from ..models import User, Ingredient, Measurement
 
 
-@admin.route('/ingredients' methods=['GET', 'POST'])
+@admin.route('/ingredients', methods=['GET', 'POST'])
 def ingredients():
     ingredient_list = Ingredient.query.all()
     return render_template('admin/ingredients.html',
