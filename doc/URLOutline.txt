@@ -1,0 +1,11 @@
+Grocer.com/auth
+    Grocer.com/auth/login.html
+    Grocer.com/auth/logout.html
+
+Grocer.com/admin
+    Grocer.com/admin/measurements
+    Grocer.com/admin/ingredients
+
+Grocer.com/user
+    Grocer.com/user/recipes
+    Grocer.com/user/meals
