@@ -117,6 +117,28 @@ class Measurement(db.Model):
         self.abbreviation = abbreviation
 
 
+    @staticmethod
+    def insert_measurements():
+        measurements = {
+            'Teaspoon': 'tsp',
+            'Tablespoon': 'Tbsp',
+            'Ounce': 'Oz',
+            'Cup': 'C',
+            'Pint': 'Pt',
+            'Quart': 'Qt',
+            'Gallon': 'Gal',
+            'Pound': 'lbs',
+            'Package': 'Pkg'
+        }
+
+        for name, value in measurements.items():
+            measurement = Measurement.query.filter_by(name=name).first()
+            if measurement is None:
+                measurement = Measurement((name, value))
+            db.session.add(measurement)
+        db.session.commit()
+
+
 class Meal(db.Model):
     __tablename__ = 'Meals'
     meal_id = db.Column(db.Integer, primary_key=True,
