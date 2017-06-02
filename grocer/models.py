@@ -32,10 +32,10 @@ class User(UserMixin, db.Model):
 
 class UserRole(db.Model):
     __tablename__ = 'UserRoles'
-    role_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    userrole_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     name = db.Column(db.String)
     description = db.Column(db.String)
-    default = db.Column(db.Boolean, default=False)
+    default = db.Column(db.Boolean, default=False, index=True)
 
     users = db.relationship('User', backref='role')
 
